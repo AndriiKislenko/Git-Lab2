@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Персональний сайт студента</title>
+</head>
+<body>
+
+    <!-- Навігація для мобільних пристроїв -->
+    <div class="dropdown">
+        <div class="hamburger" onclick="toggleDropdown()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul id="menu" class="dropdown-content">
+            <li><a href="#home" onclick="showSection('home')">Головна</a></li>
+            <li><a href="#about" onclick="showSection('about')">Про мене</a></li>
+            <li><a href="#hobbies" onclick="showSection('hobbies')">Мої захоплення</a></li>
+            <li><a href="#university" onclick="showSection('university')">Мій ЗВО</a></li>
+            <li><a href="#profession" onclick="showSection('profession')">Моя професія</a></li>
+            <li><a href="#group" onclick="showSection('group')">Моя група</a></li>
+            <li><a href="#contacts" onclick="showSection('contacts')">Контакти</a></li>
+        </ul>
+    </div>
+
+    <!-- Навігація для ПК -->
+    <ul class="nav-list">
+        <li><a href="#home" onclick="showSection('home')">Головна</a></li>
+        <li><a href="#about" onclick="showSection('about')">Про мене</a></li>
+        <li><a href="#hobbies" onclick="showSection('hobbies')">Мої захоплення</a></li>
+        <li><a href="#university" onclick="showSection('university')">Мій ЗВО</a></li>
+        <li><a href="#profession" onclick="showSection('profession')">Моя професія</a></li>
+        <li><a href="#group" onclick="showSection('group')">Моя група</a></li>
+        <li><a href="#contacts" onclick="showSection('contacts')">Контакти</a></li>
+    </ul>
+
+    <!-- Контент, який змінюється -->
+    <div class="content">
+        <section id="home" class="active">
+            <div class="home-content">
+                <div class="text-content">
+                    <h1>Ласкаво просимо на мій сайт!</h1>
+                    <p>Привіт! Я Андрій, студент ЧНУ ім. Б. Хмельницького.</p>
+                </div>
+                <img src="../image/IMG_0011.JPG" alt="Фото" class="main-image">
+            </div>
+        </section>                               
+
+        <section id="about">
+            <h1>Про мене</h1>
+            <p>Я студент Черкаського національного універсетету ім богдана хмельницького.</p>
+        </section>
+
+        <section id="hobbies">
+            <h1>Мої захоплення</h1>
+            <p>Моє основне захоплення – це перегляд Аніме.</p>
+        </section>
+
+        <section id="university">
+            <h1>Мій ЗВО</h1>
+            <p>Я навчаюся в Черкаському національному університеті імені Богдана Хмельницького.</p>
+        </section>
+
+        <section id="profession">
+            <h1>Моя майбутня професія</h1>
+            <p>Моя спеціальність – Автоматизація та комп'ютерно-інтегровані технології.</p>
+        </section>
+
+        <section id="group">
+            <h1>Моя група</h1>
+            <p>Я навчаюся у групі 3-В.</p>
+        </section>
+
+        <section id="contacts">
+            <h1>Контакти</h1>
+            <p>Якщо хочете зв'язатися зі мною, пишіть на [kislenkoandrij@gmail.com].</p>
+        </section>
+    </div>
+
+    <script>
+        // Функція для відкриття/закриття випадаючого меню
+        function toggleDropdown() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('show');
+        }
+
+        // Функція для перемикання між секціями та оновлення URL
+        function showSection(sectionId) {
+            // Зміна активної секції
+            document.querySelectorAll('.content section').forEach(function(section) {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+            // Оновлення URL без перезавантаження сторінки
+            const url = new URL(window.location);
+            url.hash = sectionId;
+            history.pushState(null, null, url);
+
+            // Якщо потрібно додатково змінювати title (опціонально)
+            document.title = document.getElementById(sectionId).querySelector('h1').textContent + ' - Персональний сайт';
+        }
+
+        // Показ секції на основі хешу в URL при завантаженні сторінки
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentHash = window.location.hash.substring(1);
+            if (currentHash) {
+                showSection(currentHash);
+            } else {
+                showSection('home');
+            }
+        });
+
+        // Додавання обробника для навігації за допомогою кнопок "Назад"/"Вперед"
+        window.addEventListener('popstate', () => {
+            const currentHash = window.location.hash.substring(1);
+            showSection(currentHash || 'home');
+        });
+    </script>
+</body>
+</html>
