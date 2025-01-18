@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.min.css">
     <title>Персональний сайт студента</title>
 </head>
 <body>
 
-    <!-- Навігація для мобільних пристроїв -->
     <div class="dropdown">
         <div class="hamburger" onclick="toggleDropdown()">
             <span></span>
@@ -26,7 +25,6 @@
         </ul>
     </div>
 
-    <!-- Навігація для ПК -->
     <ul class="nav-list">
         <li><a href="#home" onclick="showSection('home')">Головна</a></li>
         <li><a href="#about" onclick="showSection('about')">Про мене</a></li>
@@ -37,7 +35,6 @@
         <li><a href="#contacts" onclick="showSection('contacts')">Контакти</a></li>
     </ul>
 
-    <!-- Контент, який змінюється -->
     <div class="content">
         <section id="home" class="active">
             <div class="home-content">
@@ -45,7 +42,7 @@
                     <h1>Ласкаво просимо на мій сайт!</h1>
                     <p>Привіт! Я Андрій, студент ЧНУ ім. Б. Хмельницького.</p>
                 </div>
-                <img src="../image/IMG_0011.JPG" alt="Фото" class="main-image">
+                <img src="../avatar/IMG_0011.JPG" alt="Фото" class="main-image">
             </div>
         </section>                               
 
@@ -81,30 +78,24 @@
     </div>
 
     <script>
-        // Функція для відкриття/закриття випадаючого меню
         function toggleDropdown() {
             const menu = document.getElementById('menu');
             menu.classList.toggle('show');
         }
 
-        // Функція для перемикання між секціями та оновлення URL
         function showSection(sectionId) {
-            // Зміна активної секції
             document.querySelectorAll('.content section').forEach(function(section) {
                 section.classList.remove('active');
             });
             document.getElementById(sectionId).classList.add('active');
 
-            // Оновлення URL без перезавантаження сторінки
             const url = new URL(window.location);
             url.hash = sectionId;
             history.pushState(null, null, url);
 
-            // Якщо потрібно додатково змінювати title (опціонально)
             document.title = document.getElementById(sectionId).querySelector('h1').textContent + ' - Персональний сайт';
         }
 
-        // Показ секції на основі хешу в URL при завантаженні сторінки
         window.addEventListener('DOMContentLoaded', () => {
             const currentHash = window.location.hash.substring(1);
             if (currentHash) {
@@ -114,11 +105,12 @@
             }
         });
 
-        // Додавання обробника для навігації за допомогою кнопок "Назад"/"Вперед"
         window.addEventListener('popstate', () => {
             const currentHash = window.location.hash.substring(1);
             showSection(currentHash || 'home');
         });
     </script>
+
+    <script src="./cod.js"></script>
 </body>
 </html>
