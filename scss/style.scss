@@ -1,0 +1,177 @@
+/* Основні стилі */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h2 {
+    cursor: pointer;
+}
+
+.home-content {
+    display: flex;
+    justify-content: flex-start; /* Вирівнюємо контент по лівому краю */
+    align-items: center; /* Вирівнюємо текст і зображення по центру вертикально */
+}
+
+.text-content {
+    margin-right: 10px; /* Мінімальний відступ між текстом і зображенням */
+}
+
+.main-image {
+    width: 150px; /* Зменшуємо ширину зображення */
+    height: auto; /* Зберігаємо пропорції */
+    border-radius: 10px; /* Округлення кутів */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Тінь */
+}
+
+/* Навігація для мобільної версії */
+.dropdown {
+    display: none; /* Приховуємо в ПК-версії */
+}
+
+.dropdown-content {
+    display: none;
+    background-color: #d2d2cc;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.dropdown-content li {
+    margin: 0;
+    padding: 10px 0;
+}
+
+.dropdown-content li a {
+    background-color: #4a5f78;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+}
+
+.dropdown-content li a:hover {
+    background-color: #6b84a4;
+}
+
+/* Показуємо меню при натисканні */
+.show {
+    display: block;
+}
+
+/* Контент */
+.content {
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin: 20px 0;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
+    overflow-y: auto;
+}
+
+.content section {
+    display: none;
+}
+
+.content section.active {
+    display: block;
+}
+
+h1 {
+    font-size: 36px;
+    color: #4a5f78;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    color: #6b84a4;
+}
+
+/* Список навігації для ПК */
+.nav-list {
+    display: flex;
+    justify-content: center;
+    background-color: #d2d2cc;
+    padding: 20px 0;
+    list-style-type: none; /* Це прибере маркери (точки) зі списку */
+    margin: 0;
+}
+
+.nav-list li {
+    margin: 0 15px;
+    list-style-type: none; /* Прибираємо точки для кожного елемента списку */
+}
+
+
+.nav-list li a {
+    background-color: #4a5f78;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+}
+
+.nav-list li a:hover {
+    background-color: #6b84a4;
+}
+
+/* Стиль кнопки "гамбургер" для мобільної навігації */
+.hamburger {
+    display: block;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+    margin: 20px 0; /* Забираємо auto, щоб не вирівнювало по центру */
+    padding-left: 20px; /* Додаємо відступ зліва */
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: 0.3s;
+}
+
+/* Інші стилі залишаються без змін */
+
+.dropdown {
+    display: none; /* Приховуємо в ПК-версії */
+}
+
+
+/* Мобільна версія */
+@media screen and (max-width: 845px) {
+    .dropdown {
+        display: block;
+    }
+
+    .nav-list {
+        display: none;
+    }
+}
+
+/* Десктопна версія */
+@media screen and (min-width: 846px) {
+    .nav-list {
+        display: flex;
+    }
+
+    .dropdown {
+        display: none;
+    }
+}
